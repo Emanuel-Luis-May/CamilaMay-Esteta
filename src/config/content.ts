@@ -1,6 +1,7 @@
 /**
  * TEXTOS DO SITE — procedimentos, sobre, diferenciais e chamadas.
  */
+import type { LineIconName } from '../components/LineIcon'
 import { images, type SiteImage } from './images'
 
 export type Procedure = {
@@ -67,24 +68,29 @@ export const about = {
 
 export const differentials = {
   title: 'O que guia cada atendimento.',
+  /** Ícones disponíveis: veja src/components/LineIcon.tsx. */
   items: [
     {
+      icon: 'fingerprint',
       title: 'Atendimento personalizado',
       text: 'Cada procedimento começa por ouvir você e entender o que deseja realçar.',
     },
     {
+      icon: 'compass',
       title: 'Atenção aos detalhes',
       text: 'Medidas, proporções e acabamento observados com calma, do início ao fim.',
     },
     {
+      icon: 'lotus',
       title: 'Valorização da beleza natural',
       text: 'O objetivo é harmonizar os seus traços, nunca transformá-los em outros.',
     },
     {
+      icon: 'drop',
       title: 'Cuidado e responsabilidade',
       text: 'Higiene, avaliação individual e orientações claras em cada procedimento.',
     },
-  ],
+  ] satisfies { icon: LineIconName; title: string; text: string }[],
 }
 
 export const gallerySection = {

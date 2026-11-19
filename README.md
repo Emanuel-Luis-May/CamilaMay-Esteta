@@ -1,145 +1,121 @@
 # Camila May Missio — Biomédica Esteta
 
-Landing page de Camila May Missio, biomédica esteta (design de sobrancelhas, micropigmentação e botox).
-React + TypeScript + Vite + Tailwind CSS v4.
+Landing page institucional. Procedimentos: design de sobrancelhas,
+micropigmentação e botox.
 
-## Rodar o projeto
+**Stack:** React 19, TypeScript, Vite, Tailwind CSS v4. Fontes (Bodoni Moda e
+Jost) servidas localmente via Fontsource.
+
+## Desenvolvimento
+
+Requer Node.js 22 ou superior.
 
 ```bash
 npm install
-npm run dev       # desenvolvimento em http://localhost:5173
-npm run build     # versão de produção em dist/
-npm run preview   # testa a versão de produção
+npm run dev        # http://localhost:5173
+npm run typecheck  # verificação de tipos
+npm run build      # gera dist/
+npm run preview    # serve o build localmente
 ```
 
-> Neste computador (NixOS), o Node não está instalado globalmente. Use
-> `nix-shell -p nodejs_22 --run "npm run dev"`.
+## Configuração
 
-## Antes de publicar — checklist
+Todo o conteúdo editável fica em `src/config/`:
 
-| O quê | Onde |
+| Arquivo | Conteúdo |
 | --- | --- |
-| Número do WhatsApp (só dígitos, com DDI e DDD) | `src/config/site.ts` → `whatsapp.number` |
-| Usuário do Instagram (sem @) | `src/config/site.ts` → `instagram.handle` |
-| Endereço, cidade e link do Google Maps | `src/config/site.ts` → `location` |
-| Endereço do site, para a imagem de compartilhamento aparecer no WhatsApp | `.env` → `VITE_SITE_URL` |
-| `<link rel="canonical">` com o domínio | `index.html` |
-| Endereço/telefone nos dados estruturados (opcional) | `index.html` → bloco `application/ld+json` |
+| `site.ts` | Contatos, links, localização e menu |
+| `content.ts` | Textos das seções e mensagens de WhatsApp por procedimento |
+| `images.ts` | Fotografias: caminho, `alt`, proporção, enquadramento e crédito |
 
-Enquanto o WhatsApp e o Instagram estiverem vazios, os botões funcionam mas
-abrem o WhatsApp sem destinatário e a página inicial do Instagram. Em modo de
-desenvolvimento, o console avisa o que falta preencher.
+Variáveis de ambiente (`.env`):
 
-## Onde ficam os conteúdos
+| Variável | Uso |
+| --- | --- |
+| `VITE_SITE_URL` | URL absoluta do site, sem barra final. Necessária para a imagem de compartilhamento (`og:image`). |
 
-Tudo o que é editável fica em `src/config/`:
+Com WhatsApp e Instagram vazios, os botões abrem os apps sem destinatário. Em
+desenvolvimento, o console lista os campos pendentes.
 
-- **`site.ts`**: contatos, links, localização e menu.
-- **`content.ts`**: textos do Hero, procedimentos (nome, descrição, mensagem
-  do WhatsApp de cada um), Sobre, diferenciais, galeria e chamada final.
-- **`images.ts`**: todas as fotografias, com texto alternativo, enquadramento
-  e crédito.
+## Fotografias
 
-## Substituir as fotografias ilustrativas
+As fotos atuais são ilustrativas, do [Unsplash](https://unsplash.com/license),
+e não retratam a profissional nem clientes. O site informa isso na seção Sobre,
+na galeria e no rodapé.
 
-**Todas as fotos atuais são ilustrativas**, vindas do [Unsplash](https://unsplash.com/license)
-(licença gratuita para uso comercial, sem marca d'água). Elas **não** mostram a
-Camila, clientes do estúdio nem trabalhos dela. O site deixa isso claro na
-legenda da seção Sobre, na nota da galeria e no rodapé.
+Para substituir uma foto:
 
-Para trocar uma foto:
+1. Adicione o arquivo em `public/images/` (JPG ou WebP, ~1600 px no lado maior).
+2. Em `src/config/images.ts`, atualize `src` e `alt`.
+3. Ajuste `ratio` (largura ÷ altura) e, se necessário, `focus` (ex.: `'50% 30%'`).
+4. Defina `illustrative: false` e remova `credit`.
 
-1. Salve a foto em `public/images/`, com cerca de 1600 px no lado maior,
-   em JPG ou WebP, qualidade ~80.
-2. Em `src/config/images.ts`, troque `src` por `'/images/nome-do-arquivo.jpg'`.
-3. Atualize o `alt` (descrição da foto para leitores de tela e Google).
-4. Ajuste `ratio` (largura ÷ altura) e, se preciso, `focus` (ex.: `'50% 30%'`
-   para subir o enquadramento).
-5. Mude `illustrative` para `false` e apague `credit`.
+| Seção | Chave | Foto sugerida |
+| --- | --- | --- |
+| Hero | `images.hero` | Close de sobrancelha, vertical 3:4 |
+| Design de Sobrancelhas | `images.procedures.design` | Atendimento, vertical |
+| Micropigmentação | `images.procedures.micropigmentacao` | Procedimento no estúdio, vertical |
+| Botox | `images.procedures.botox` | Retrato de pele/rosto, vertical |
+| Sobre | `images.about` | Retrato da profissional, vertical 4:5 |
+| Galeria | `gallery[]` (6 itens) | Atendimentos reais, com autorização das clientes |
 
-| Seção | Chave em `images.ts` | Foto atual | Sugestão de foto própria |
-| --- | --- | --- | --- |
-| Hero | `images.hero` | Sobrancelha em close (Veronika Veronikamaks) | Close de uma sobrancelha feita por ela, vertical 3:4 |
-| Design de Sobrancelhas | `images.procedures.design` | Modelagem com pinça (Stefan Vibes) | Camila trabalhando, vertical |
-| Micropigmentação | `images.procedures.micropigmentacao` | Procedimento com luvas (Sum Sum) | Procedimento no estúdio, vertical |
-| Botox | `images.procedures.botox` | Perfil com pele natural (Icons8 Team) | Retrato de pele/rosto, vertical |
-| Sobre | `images.about` | Interior com arcos (kimia kazemi) | **Retrato da Camila**, vertical 4:5 |
-| Galeria | `gallery[]` (6 itens) | Fotos editoriais de referência | Registros reais dos atendimentos, com autorização das clientes |
+Observações:
 
-### Casos especiais
-
-- **Hero, linhas de mapeamento.** As linhas douradas sobre a foto do Hero
-  foram posicionadas para *esta* sobrancelha. Ao trocar a foto, ajuste os
-  pontos `ORIGIN`/`POINTS` e o desenho (`d` do `<path>`) em
-  `src/components/Hero.tsx` (sistema de coordenadas 300×400). Se preferir,
-  remova `<BrowMapping />`.
-- **Sobre.** Quando houver um retrato da Camila, troque `images.about` e mude
-  `about.photoCaption` em `content.ts` (ex.: `'Camila May Missio'`). A apresentação
-  pessoal entra em `about.bio` (um parágrafo por item). Não inclua formação,
-  certificações ou tempo de experiência sem confirmação.
-- **Galeria.** Os itens se alternam entre a coluna larga e a estreita, e
-  `aspect` define o recorte na grade (`'4/3'`, `'1/1'`, `'3/4'`, `'4/5'`). Com
-  fotos reais, troque `gallerySection.title`/`note` em `content.ts`. Antes e
-  depois só com fotos reais e autorização por escrito das clientes.
-- **Créditos.** O rodapé lista automaticamente os autores das fotos com
-  `illustrative: true`. Quando todas forem próprias, a lista fica vazia;
-  remova então o bloco "Fotografias ilustrativas" em `src/components/Footer.tsx`.
-- **Imagem de compartilhamento** (WhatsApp/Instagram/Facebook): é
-  `public/og-image.jpg` (1200×630, logo sobre fundo escuro). Essas redes
-  exigem endereço absoluto: preencha `VITE_SITE_URL` no `.env` (ex.:
-  `https://camilamaymissio.netlify.app`) e rode o build de novo.
+- **Hero:** as linhas de mapeamento (`BrowMapping` em `src/components/Hero.tsx`)
+  estão posicionadas para a foto atual, em coordenadas 300×400. Ao trocar a
+  foto, ajuste `ORIGIN`, `POINTS` e o `path`, ou remova o componente.
+- **Sobre:** com retrato real, atualize `about.photoCaption` em `content.ts`.
+  Formação, certificações e tempo de experiência só com confirmação.
+- **Galeria:** `aspect` define o recorte na grade (`'4/3'`, `'1/1'`, `'3/4'`,
+  `'4/5'`). Com fotos reais, revise `gallerySection.title` e `note`. Antes e
+  depois somente com autorização por escrito.
+- **Créditos:** o rodapé lista os autores das fotos com `illustrative: true`.
+  Sem fotos ilustrativas, remova o bloco correspondente em
+  `src/components/Footer.tsx`.
+- **Compartilhamento:** `public/og-image.jpg` (1200×630). Requer
+  `VITE_SITE_URL` preenchida e novo build.
 
 ## Logo
 
-Os arquivos originais estão em `brand/originais/` (fundo escuro, branco e
-bege). Eles **não** são publicados no site.
+- `brand/originais/`: arquivos originais (não publicados).
+- `src/assets/brand/`: versão vetorizada em quatro SVGs — `mark`, `word`,
+  `divider` e `sub`.
+- `src/components/BrandLogo.tsx`: `LogoHorizontal` (cabeçalho), `LogoStacked`
+  (rodapé) e `LogoMark` (seção Sobre).
+- Derivados em `public/`: `favicon.png`, `apple-touch-icon.png`, `og-image.jpg`.
 
-A logo foi vetorizada em quatro partes, em `src/assets/brand/`: rosto
-(`mark.svg`), nome (`word.svg`), divisor com lótus (`divider.svg`) e
-"Biomédica Esteta" (`sub.svg`). O componente `src/components/BrandLogo.tsx`
-monta essas partes de três formas:
+Se houver arquivo vetorial original (SVG/PDF), substitua os SVGs de
+`src/assets/brand/` a partir dele.
 
-| Uso | Componente | Onde aparece |
-| --- | --- | --- |
-| Horizontal (rosto + nome) | `LogoHorizontal` | Cabeçalho |
-| Empilhada, igual ao original | `LogoStacked` | Rodapé |
-| Só o rosto | `LogoMark` | Assinatura da seção Sobre |
+## Identidade visual
 
-Também foram gerados a partir dela: `public/favicon.png`,
-`public/apple-touch-icon.png` (ícone na tela inicial do celular) e
-`public/og-image.jpg`.
+| Token | Cor |
+| --- | --- |
+| Preto | `#171513` |
+| Off-white | `#F8F6F2` |
+| Nude | `#D8C6B5` |
+| Dourado | `#C6A46C` |
+| Bege | `#EAE2D8` |
+| Texto secundário | `#5E554D` |
+| Dourado da logo (fundo claro) | `#A88B55` |
+| Cinza da logo (fundo escuro) | `#CBC7B9` |
 
-Se a designer entregar a logo em **SVG ou PDF vetorial**, troque os quatro
-arquivos de `src/assets/brand/` pelas partes recortadas do original. A
-vetorização atual é fiel, mas o arquivo da designer é sempre a referência.
+O dourado `#C6A46C` não tem contraste suficiente para texto sobre off-white;
+use-o apenas em detalhes gráficos ou sobre fundo escuro. As animações respeitam
+`prefers-reduced-motion`.
+
+Tipografia: Bodoni Moda (títulos) e Jost (texto).
 
 ## Estrutura
 
 ```
 src/
-  config/        conteúdos editáveis (site, textos, imagens)
-  components/    Header, Hero, Procedures, About, Differentials,
-                 Gallery + Lightbox, Cta, Footer, Picture, BrandLogo, BrowMark
-  assets/brand/  logo vetorizada (4 partes em SVG)
-  hooks/         useReveal (entradas ao rolar), useScrolled (header)
-  lib/           image.ts (srcset responsivo), style.ts
-  index.css      tokens de cor/tipografia, botões, animações
-public/          favicon, ícone do celular, og-image, robots.txt
-brand/originais/ arquivos originais da logo (não publicados)
+  config/        conteúdo editável (site, textos, imagens)
+  components/    seções da página e componentes de apoio
+  assets/brand/  logo vetorizada
+  hooks/         useReveal, useScrolled
+  lib/           utilitários (srcset responsivo, estilos)
+  index.css      tokens, botões e animações
+public/          favicon, ícones, og-image, robots.txt
+brand/originais/ originais da logo (não publicados)
 ```
-
-## Identidade
-
-- **Cores:** preto `#171513`, off-white `#F8F6F2`, nude `#D8C6B5`,
-  dourado `#C6A46C`, bege `#EAE2D8`. Apoio: `#5E554D` para texto secundário,
-  com contraste AA. O dourado aparece só em fios, marcadores e no botão sobre
-  fundo escuro: sobre off-white ele não tem contraste suficiente para texto.
-  Da logo vêm `#A88B55` (dourado do rosto sobre fundo claro) e `#CBC7B9`
-  (cinza-pedra do nome sobre fundo escuro).
-- **Tipografia:** Bodoni Moda (títulos; o alto contraste do traço lembra os
-  fios da micropigmentação) e Jost (textos). As duas são servidas pelo próprio
-  site, sem Google Fonts.
-- **Motivo gráfico:** o arco de sobrancelha (`BrowMark`) e as linhas de
-  mapeamento do Hero, a marcação que antecede o design de sobrancelhas.
-- **Movimento:** uma sequência de abertura no Hero e entradas discretas ao
-  rolar. Tudo é desativado com "reduzir movimento" no sistema.

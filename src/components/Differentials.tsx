@@ -1,6 +1,6 @@
 import { revealDelay } from '../lib/style'
 import { differentials } from '../config/content'
-import { BrowMark } from './BrowMark'
+import { LineIcon } from './LineIcon'
 
 export function Differentials() {
   return (
@@ -18,9 +18,9 @@ export function Differentials() {
               key={item.title}
               data-reveal
               style={revealDelay(i * 90)}
-              className="grid grid-cols-[3.25rem_1fr] gap-x-4 border-t border-ink/12 py-9 last:border-b md:grid-cols-[4.5rem_1fr] md:py-11"
+              className="grid grid-cols-[3.75rem_1fr] gap-x-4 border-t border-ink/12 py-9 last:border-b md:grid-cols-[5.5rem_1fr] md:py-11"
             >
-              <BrowMark className="mt-3 w-9 text-gold md:w-11" strokeWidth={1.25} />
+              <LineIcon name={item.icon} className="-mt-2 h-14 w-14 text-gold-mark md:-mt-3 md:h-[4.25rem] md:w-[4.25rem]" />
               <div>
                 <h3 className="t-h3">{item.title}</h3>
                 <p className="mt-3 max-w-[30rem] text-muted">{item.text}</p>
