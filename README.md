@@ -4,101 +4,159 @@ Landing page institucional. Procedimentos: micropigmentação, botox,
 bioestimulador de colágeno, harmonização facial, fios de PDO, microagulhamento,
 skinbooster, rinomodelação e preenchimento labial.
 
-**Stack:** React 19, TypeScript, Vite, Tailwind CSS v4. Fontes (Bodoni Moda e
-Jost) servidas localmente via Fontsource.
+**Stack:** HTML, CSS e JavaScript puros. Sem framework, sem build e sem
+dependências. Fontes (Bodoni Moda e Jost) servidas localmente.
 
 ## Desenvolvimento
 
-Requer Node.js 22 ou superior.
+Não há nada para instalar ou compilar: o site é a própria pasta. Para ver
+localmente, sirva a pasta com qualquer servidor estático, por exemplo:
 
 ```bash
-npm install
-npm run dev        # http://localhost:5173
-npm run typecheck  # verificação de tipos
-npm run build      # gera dist/
-npm run preview    # serve o build localmente
+python3 -m http.server 8000   # http://localhost:8000
 ```
 
-## Configuração
+Use um servidor em vez de abrir o `index.html` direto (`file://`): nesse modo o
+navegador bloqueia os SVGs da logo, aplicados como máscara, e ela aparece como
+blocos de cor. Na hospedagem isso não acontece.
 
-Todo o conteúdo editável fica em `src/config/`:
+## Publicação
 
-| Arquivo | Conteúdo |
-| --- | --- |
-| `site.ts` | Contatos, links, localização e menu |
-| `content.ts` | Textos das seções e modelo da mensagem de WhatsApp dos procedimentos |
-| `images.ts` | Fotografias: caminho, `alt`, proporção, enquadramento e crédito |
+Envie a pasta para a hospedagem, **exceto** `brand/`, `scripts/` e
+`README.md`, que não fazem parte do site:
 
-Variáveis de ambiente (`.env`):
+```
+index.html  css/  js/  assets/  images/
+favicon.png  apple-touch-icon.png  og-image.jpg  robots.txt
+```
 
-| Variável | Uso |
-| --- | --- |
-| `VITE_SITE_URL` | URL absoluta do site, sem barra final. Necessária para a imagem de compartilhamento (`og:image`). |
+Antes de publicar, no `<head>` do `index.html`:
 
-Com WhatsApp e Instagram vazios, os botões abrem os apps sem destinatário. Em
-desenvolvimento, o console lista os campos pendentes.
+- troque `/og-image.jpg` nas metatags `og:image` e `twitter:image` pelo endereço
+  absoluto (ex.: `https://SEU-DOMINIO/og-image.jpg`). WhatsApp, Instagram e
+  Facebook exigem esse formato na imagem de compartilhamento;
+- adicione `<link rel="canonical" href="https://SEU-DOMINIO/" />`.
+
+## Estrutura
+
+```
+index.html        todo o conteúdo do site (textos, links, fotos)
+css/style.css     estilos: tokens de cor/fonte, componentes e seções
+js/main.js        cabeçalho, menu mobile, carrossel, animações de entrada
+assets/brand/     logo vetorizada (mark, word, divider, sub)
+assets/fonts/     fontes Bodoni Moda e Jost (woff2)
+images/fotos/     fotografias em 3 larguras (640, 1080, 1440)
+favicon.png, apple-touch-icon.png, og-image.jpg, robots.txt
+brand/originais/  originais da logo (não publicados)
+scripts/          baixar-fotos.sh (não publicado)
+```
+
+## Editando o conteúdo
+
+Tudo fica no `index.html`, organizado por seção (`Cabeçalho`, `Início`,
+`Procedimentos`, `Sobre`, `Diferenciais`, `Chamada final`, `Rodapé`).
+
+### WhatsApp e Instagram
+
+Os links de WhatsApp seguem o formato:
+
+```
+https://wa.me/554598432801?text=<mensagem codificada>
+```
+
+- **Número:** só dígitos, com DDI e DDD. Para trocar, substitua
+  `554598432801` em todo o arquivo (busca e substituição).
+- **Mensagem:** codificada para URL (espaço vira `%20`, `á` vira `%C3%A1`
+  etc.). Para gerar, use no console do navegador:
+  `encodeURIComponent('Olá, Camila! Gostaria de agendar um atendimento.')`.
+- Botões gerais usam: *“Olá, Camila! Gostaria de agendar um atendimento.”*
+- Cada card de procedimento usa: *“Olá, Camila! Gostaria de saber mais sobre
+  {procedimento} e agendar uma avaliação.”*
+
+Instagram: `https://www.instagram.com/camilamaymissio/` (menu mobile e rodapé).
+
+### Procedimentos
+
+Cada procedimento é um `<li class="proc-card">` dentro de
+`#procedimentos-lista`. Para adicionar, copie um card inteiro e ajuste `id`,
+foto, nome, descrição e a mensagem do link. O deslocamento vertical dos cards
+no desktop e as setas do carrossel se ajustam sozinhos.
+
+### Sobre
+
+- **Apresentação pessoal:** há um comentário no lugar certo. Cada parágrafo é um
+  `<p data-reveal class="about__bio">`. Formação, certificações e tempo de
+  experiência só com confirmação da Camila.
+- **Legenda da foto:** com um retrato real, descomente o `<figcaption>`.
+
+### Endereço
+
+No rodapé, em `<address>`. O link “Ver no mapa” aponta para o Google Maps.
+
+### Hero
+
+A palavra final do título fica em `<em>` e aparece em itálico no tom `rose`.
 
 ## Fotografias
 
-As fotos atuais são ilustrativas, do [Unsplash](https://unsplash.com/license) e do [Pexels](https://www.pexels.com/license/),
-e não retratam a profissional nem clientes. O site informa isso na seção Sobre
-e no rodapé.
+As fotos atuais são ilustrativas, do [Unsplash](https://unsplash.com/license) e
+do [Pexels](https://www.pexels.com/license/), e não retratam a profissional nem
+clientes. O site informa isso na seção Sobre e no rodapé.
 
-Elas ficam salvas no próprio site, em `public/images/fotos/` (3 larguras cada),
-para não depender do CDN do Unsplash/Pexels, que às vezes trava em alguns
-tamanhos. Ao adicionar uma foto com `unsplash('id')` ou `pexels(id)` em
-`src/config/images.ts`, rode:
+Elas ficam salvas no próprio site, em `images/fotos/` (3 larguras cada), para
+não depender do CDN do Unsplash/Pexels, que às vezes trava em alguns tamanhos.
+
+Cada foto é um `<img>` com `src`, `srcset` e `sizes`:
+
+```html
+<img
+  src="images/fotos/u-<id>-1080.jpg"
+  srcset="images/fotos/u-<id>-640.jpg 640w, images/fotos/u-<id>-1080.jpg 1080w, images/fotos/u-<id>-1440.jpg 1440w"
+  sizes="…" alt="…" width="1200" height="…"
+  loading="lazy" decoding="async"
+  style="object-position: 50% 40%" />
+```
+
+- `width`/`height`: proporção original da foto (com `width="1200"`, `height` =
+  1200 ÷ largura × altura). Evita saltos de layout.
+- `object-position`: enquadramento quando a foto é recortada.
+
+**Nova foto do Unsplash ou Pexels:** escreva o `<img>` com o padrão
+`u-<id do Unsplash>` ou `p-<número do Pexels>` e rode:
 
 ```bash
 bash scripts/baixar-fotos.sh   # baixa só as fotos que ainda não existem
 ```
 
-Para substituir uma foto:
+**Foto própria:** exporte com cerca de 1600 px no lado maior (JPG ou WebP,
+qualidade ~80), coloque em `images/` e use só `src` (sem `srcset`/`sizes`).
+Atualize o `alt` descrevendo a foto real e remova o crédito correspondente no
+rodapé. Sem fotos de banco de imagem, remova o bloco `<details class="credits">`.
 
-1. Adicione o arquivo em `public/images/` (JPG ou WebP, ~1600 px no lado maior).
-2. Em `src/config/images.ts`, atualize `src` e `alt`.
-3. Ajuste `ratio` (largura ÷ altura) e, se necessário, `focus` (ex.: `'50% 30%'`).
-4. Defina `illustrative: false` e remova `credit`.
-
-| Seção | Chave | Foto sugerida |
+| Seção | Onde | Foto sugerida |
 | --- | --- | --- |
-| Hero | `images.hero` | Retrato de rosto com pele luminosa, vertical 4:5 |
-| Micropigmentação | `images.procedures.micropigmentacao` | Procedimento no estúdio, vertical |
-| Botox | `images.procedures.botox` | Retrato de pele/rosto, vertical |
-| Bioestimulador de Colágeno | `images.procedures.bioestimulador` | Retrato de pele/rosto, vertical |
-| Harmonização Facial | `images.procedures.harmonizacao` | Procedimento no estúdio, vertical |
-| Fios de PDO | `images.procedures.fiosPdo` | Retrato de pele/rosto, vertical |
-| Microagulhamento | `images.procedures.microagulhamento` | Procedimento no estúdio, vertical |
-| Skinbooster | `images.procedures.skinbooster` | Retrato de pele/rosto, vertical |
-| Rinomodelação | `images.procedures.rinomodelacao` | Retrato de rosto, vertical |
-| Preenchimento Labial | `images.procedures.preenchimentoLabial` | Procedimento no estúdio, vertical |
-| Sobre | `images.about` | Retrato da profissional, vertical 4:5 |
+| Hero | `.hero-photo` | Retrato de rosto com pele luminosa, vertical 4:5 |
+| Procedimentos | cada `.proc-card` | Procedimento no estúdio ou retrato de pele/rosto, vertical |
+| Sobre | `.about__figure` | Retrato da profissional, vertical 4:5 |
 
-Observações:
-
-- **Hero:** textos em `hero` (`content.ts`). A palavra final do título
-  (`titleAccent`) aparece em itálico no tom `rose`.
-- **Sobre:** com retrato real, atualize `about.photoCaption` em `content.ts`.
-  Formação, certificações e tempo de experiência só com confirmação.
-- **Créditos:** o rodapé lista os autores das fotos com `illustrative: true`.
-  Sem fotos ilustrativas, remova o bloco correspondente em
-  `src/components/Footer.tsx`.
-- **Compartilhamento:** `public/og-image.jpg` (1200×630). Requer
-  `VITE_SITE_URL` preenchida e novo build.
+Compartilhamento: `og-image.jpg` (1200×630).
 
 ## Logo
 
 - `brand/originais/`: arquivos originais (não publicados).
-- `src/assets/brand/`: versão vetorizada em quatro SVGs — `mark`, `word`,
-  `divider` e `sub`.
-- `src/components/BrandLogo.tsx`: `LogoHorizontal` (cabeçalho), `LogoStacked`
-  (rodapé) e `LogoMark` (seção Sobre).
-- Derivados em `public/`: `favicon.png`, `apple-touch-icon.png`, `og-image.jpg`.
+- `assets/brand/`: versão vetorizada em quatro SVGs (`mark`, `word`, `divider`
+  e `sub`), aplicados como máscara no CSS (`.logo-part--*`). A cor vem de
+  `color`, então a mesma logo serve para fundo claro e escuro.
+- Versões no HTML: `.logo` (horizontal, cabeçalho), `.logo-stacked` (empilhada,
+  rodapé) e o símbolo sozinho na seção Sobre.
+- Derivados na raiz: `favicon.png`, `apple-touch-icon.png`, `og-image.jpg`.
 
 Se houver arquivo vetorial original (SVG/PDF), substitua os SVGs de
-`src/assets/brand/` a partir dele.
+`assets/brand/` a partir dele.
 
 ## Identidade visual
+
+Cores definidas como variáveis em `:root`, no início de `css/style.css`:
 
 | Token | Cor |
 | --- | --- |
@@ -116,17 +174,3 @@ use-o apenas em detalhes gráficos ou sobre fundo escuro. As animações respeit
 `prefers-reduced-motion`.
 
 Tipografia: Bodoni Moda (títulos) e Jost (texto).
-
-## Estrutura
-
-```
-src/
-  config/        conteúdo editável (site, textos, imagens)
-  components/    seções da página e componentes de apoio
-  assets/brand/  logo vetorizada
-  hooks/         useReveal, useScrolled
-  lib/           utilitários (srcset responsivo, estilos)
-  index.css      tokens, botões e animações
-public/          favicon, ícones, og-image, robots.txt
-brand/originais/ originais da logo (não publicados)
-```

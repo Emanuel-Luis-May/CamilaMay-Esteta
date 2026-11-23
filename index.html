@@ -12,12 +12,13 @@
     />
     <meta name="theme-color" content="#F8F6F2" />
     <meta name="robots" content="index, follow" />
-    <link rel="icon" href="/favicon.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <!-- Ao publicar, adicione: <link rel="canonical" href="https://SEU-DOMINIO/" /> -->
 
     <!-- Compartilhamento (Open Graph / WhatsApp / Facebook).
-         A imagem usa VITE_SITE_URL do arquivo .env (precisa ser endereço absoluto). -->
+         Ao publicar, troque "/og-image.jpg" nas duas metatags de imagem pelo endereço
+         absoluto, ex.: https://SEU-DOMINIO/og-image.jpg -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Camila May Missio" />
@@ -26,7 +27,7 @@
       property="og:description"
       content="Beleza, precisão e naturalidade em cada detalhe. Micropigmentação, botox, bioestimulador de colágeno, harmonização facial, fios de PDO, microagulhamento, skinbooster, rinomodelação e preenchimento labial."
     />
-    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta property="og:image" content="/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Logo de Camila May Missio, Biomédica Esteta" />
@@ -36,7 +37,7 @@
       name="twitter:description"
       content="Micropigmentação, botox, bioestimulador de colágeno, harmonização facial, fios de PDO, microagulhamento, skinbooster, rinomodelação e preenchimento labial com atendimento personalizado."
     />
-    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta name="twitter:image" content="/og-image.jpg" />
 
     <!-- Dados estruturados (complete a url ao publicar) -->
     <script type="application/ld+json">
@@ -69,9 +70,393 @@
       }
     </script>
 
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/main.js" defer></script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- ——— Cabeçalho ——— -->
+    <header class="site-header">
+      <div class="container-x site-header__bar">
+        <a href="#inicio" aria-label="Camila May Missio, Biomédica Esteta — início" class="site-header__home">
+          <span role="img" aria-label="Camila May Missio, Biomédica Esteta" class="logo">
+            <span aria-hidden="true" class="logo-part logo-part--mark logo__mark"></span>
+            <span class="logo__text">
+              <span aria-hidden="true" class="logo-part logo-part--word logo__word"></span>
+              <span aria-hidden="true" class="logo-part logo-part--sub logo__sub"></span>
+            </span>
+          </span>
+        </a>
+
+        <nav aria-label="Principal" class="main-nav">
+          <ul>
+            <li><a href="#inicio">Início<span class="main-nav__line"></span></a></li>
+            <li><a href="#procedimentos">Procedimentos<span class="main-nav__line"></span></a></li>
+            <li><a href="#sobre">Sobre<span class="main-nav__line"></span></a></li>
+            <li><a href="#contato">Contato<span class="main-nav__line"></span></a></li>
+          </ul>
+        </nav>
+
+        <div class="site-header__actions">
+          <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer" class="btn btn-outline site-header__cta">Agendar horário</a>
+          <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu">
+            <span class="menu-toggle__icon" aria-hidden="true">
+              <span class="menu-toggle__line menu-toggle__line--top"></span>
+              <span class="menu-toggle__line menu-toggle__line--bottom"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menu mobile (fora do header: o backdrop-filter dele prenderia o position:fixed) -->
+    <div id="menu-mobile" class="mobile-menu" aria-hidden="true">
+      <nav aria-label="Menu" class="container-x mobile-menu__nav">
+        <ul class="mobile-menu__list">
+          <li class="mobile-menu__item"><a href="#inicio" tabindex="-1">Início</a></li>
+          <li class="mobile-menu__item"><a href="#procedimentos" tabindex="-1">Procedimentos</a></li>
+          <li class="mobile-menu__item"><a href="#sobre" tabindex="-1">Sobre</a></li>
+          <li class="mobile-menu__item"><a href="#contato" tabindex="-1">Contato</a></li>
+        </ul>
+        <div class="mobile-menu__footer">
+          <div class="hairline"></div>
+          <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer" tabindex="-1" class="btn btn-ink mobile-menu__cta">Agendar horário</a>
+          <a href="https://www.instagram.com/camilamaymissio/" target="_blank" rel="noopener noreferrer" tabindex="-1" class="link-line mobile-menu__social">Instagram</a>
+        </div>
+      </nav>
+    </div>
+
+    <main id="conteudo">
+      <!-- ——— Início ——— -->
+      <section id="inicio" aria-label="Início" class="hero">
+        <div class="container-x hero__grid">
+          <div class="hero__text">
+            <p class="hero-fade hero__eyebrow" style="--d: 200ms">Biomédica Esteta · Medianeira — PR</p>
+
+            <h1 class="hero-line hero__title">
+              <span style="--d: 350ms">Realce sua beleza. Revele sua<!-- palavra em destaque: --> <em>essência.</em></span>
+            </h1>
+
+            <p class="hero-fade hero__lead" style="--d: 900ms">Beleza, precisão e naturalidade em cada detalhe. Cuidados personalizados para valorizar aquilo que você tem de mais único.</p>
+
+            <div class="hero-fade hero__actions" style="--d: 1050ms">
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer" class="btn btn-ink hero__btn">Agendar atendimento</a>
+              <a href="#procedimentos" class="btn btn-outline hero__btn">Conhecer procedimentos</a>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <div class="hero-photo">
+              <img src="images/fotos/p-10658350-1080.jpg" srcset="images/fotos/p-10658350-640.jpg 640w, images/fotos/p-10658350-1080.jpg 1080w, images/fotos/p-10658350-1440.jpg 1440w" sizes="(min-width: 1024px) 45vw, 92vw" alt="Retrato de mulher de rosto inclinado, com pele luminosa e maquiagem nude suave" width="1200" height="1505" loading="eager" decoding="sync" fetchpriority="high" style="object-position: 50% 35%" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ——— Procedimentos ——— -->
+      <section id="procedimentos" aria-labelledby="procedimentos-titulo" class="procedures">
+        <div class="container-x">
+          <h2 id="procedimentos-titulo" data-reveal class="t-h2">Beleza em cada detalhe.</h2>
+
+          <div class="hairline procedures__rule"></div>
+
+          <div role="region" aria-roledescription="carrossel" aria-label="Procedimentos" data-reveal style="--reveal-delay: 200ms" class="carousel">
+            <!--
+              Para cada procedimento: o link "Consultar e agendar" abre o WhatsApp com a mensagem
+              "Olá, Camila! Gostaria de saber mais sobre {procedimento} e agendar uma avaliação."
+              (texto codificado na URL). A posição dos cards no desktop alterna sozinha (CSS).
+            -->
+            <ul id="procedimentos-lista" class="no-scrollbar carousel__track">
+          <li id="micropigmentacao" class="proc-card">
+            <article aria-labelledby="micropigmentacao-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1529259491550-3eeaa2780bfa-1080.jpg" srcset="images/fotos/u-1529259491550-3eeaa2780bfa-640.jpg 640w, images/fotos/u-1529259491550-3eeaa2780bfa-1080.jpg 1080w, images/fotos/u-1529259491550-3eeaa2780bfa-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Close-up de olhos claros com sobrancelhas bem definidas e naturais" width="1200" height="800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 30% 40%" />
+              </div>
+              <h3 id="micropigmentacao-nome" class="t-h3">Micropigmentação</h3>
+              <p>Técnica que proporciona definição e preenchimento das sobrancelhas, buscando um resultado harmônico e natural.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Micropigmenta%C3%A7%C3%A3o%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Micropigmentação (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="botox" class="proc-card">
+            <article aria-labelledby="botox-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1544717304-a2db4a7b16ee-1080.jpg" srcset="images/fotos/u-1544717304-a2db4a7b16ee-640.jpg 640w, images/fotos/u-1544717304-a2db4a7b16ee-1080.jpg 1080w, images/fotos/u-1544717304-a2db4a7b16ee-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Mulher de perfil com pele natural e cabelos soltos, sobre fundo claro" width="1200" height="1800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 50% 30%" />
+              </div>
+              <h3 id="botox-nome" class="t-h3">Botox</h3>
+              <p>Tratamento estético voltado à suavização de linhas de expressão, com avaliação individualizada.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Botox%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Botox (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="bioestimulador-de-colageno" class="proc-card">
+            <article aria-labelledby="bioestimulador-de-colageno-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1556942040-df93bd3bdd19-1080.jpg" srcset="images/fotos/u-1556942040-df93bd3bdd19-640.jpg 640w, images/fotos/u-1556942040-df93bd3bdd19-1080.jpg 1080w, images/fotos/u-1556942040-df93bd3bdd19-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Retrato de mulher com pele luminosa e a mão apoiada no contorno do rosto" width="1200" height="1500" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 50% 45%" />
+              </div>
+              <h3 id="bioestimulador-de-colageno-nome" class="t-h3">Bioestimulador de Colágeno</h3>
+              <p>Estimula a produção natural de colágeno, contribuindo de forma gradual para a firmeza e a qualidade da pele.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Bioestimulador%20de%20Col%C3%A1geno%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Bioestimulador de Colágeno (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="harmonizacao-facial" class="proc-card">
+            <article aria-labelledby="harmonizacao-facial-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1785861084191-3600dfc2a6d6-1080.jpg" srcset="images/fotos/u-1785861084191-3600dfc2a6d6-640.jpg 640w, images/fotos/u-1785861084191-3600dfc2a6d6-1080.jpg 1080w, images/fotos/u-1785861084191-3600dfc2a6d6-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Profissional de luvas realizando uma aplicação estética no queixo de uma mulher" width="1200" height="800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 45% 50%" />
+              </div>
+              <h3 id="harmonizacao-facial-nome" class="t-h3">Harmonização Facial</h3>
+              <p>Conjunto de procedimentos que busca equilibrar as proporções do rosto, valorizando seus traços com naturalidade.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Harmoniza%C3%A7%C3%A3o%20Facial%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Harmonização Facial (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="fios-de-pdo" class="proc-card">
+            <article aria-labelledby="fios-de-pdo-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1695990190064-e8ca2ca16af6-1080.jpg" srcset="images/fotos/u-1695990190064-e8ca2ca16af6-640.jpg 640w, images/fotos/u-1695990190064-e8ca2ca16af6-1080.jpg 1080w, images/fotos/u-1695990190064-e8ca2ca16af6-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Mulher com sardas e as mãos emoldurando o contorno do rosto, em luz dourada" width="1200" height="1800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 50% 40%" />
+              </div>
+              <h3 id="fios-de-pdo-nome" class="t-h3">Fios de PDO</h3>
+              <p>Fios absorvíveis que auxiliam na sustentação da pele e estimulam o colágeno, com resultado gradual e natural.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Fios%20de%20PDO%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Fios de PDO (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="microagulhamento" class="proc-card">
+            <article aria-labelledby="microagulhamento-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1761718209835-c8586b7dcac0-1080.jpg" srcset="images/fotos/u-1761718209835-c8586b7dcac0-640.jpg 640w, images/fotos/u-1761718209835-c8586b7dcac0-1080.jpg 1080w, images/fotos/u-1761718209835-c8586b7dcac0-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Close-up de tratamento de pele com aplicação de produto no rosto com pincel" width="1200" height="1800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 50% 50%" />
+              </div>
+              <h3 id="microagulhamento-nome" class="t-h3">Microagulhamento</h3>
+              <p>Microperfurações controladas que estimulam a renovação da pele, auxiliando na melhora da textura e do viço.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Microagulhamento%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Microagulhamento (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="skinbooster" class="proc-card">
+            <article aria-labelledby="skinbooster-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1551184451-76b762941ad6-1080.jpg" srcset="images/fotos/u-1551184451-76b762941ad6-640.jpg 640w, images/fotos/u-1551184451-76b762941ad6-1080.jpg 1080w, images/fotos/u-1551184451-76b762941ad6-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Close-up de rosto com pele luminosa e um feixe de luz quente sobre o olho" width="1200" height="1800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 50% 40%" />
+              </div>
+              <h3 id="skinbooster-nome" class="t-h3">Skinbooster</h3>
+              <p>Hidratação profunda da pele com ácido hialurônico, contribuindo para mais viço, maciez e luminosidade.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Skinbooster%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Skinbooster (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="rinomodelacao" class="proc-card">
+            <article aria-labelledby="rinomodelacao-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1785860945533-918a531bcdeb-1080.jpg" srcset="images/fotos/u-1785860945533-918a531bcdeb-640.jpg 640w, images/fotos/u-1785860945533-918a531bcdeb-1080.jpg 1080w, images/fotos/u-1785860945533-918a531bcdeb-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Profissional de luvas realizando uma aplicação estética no nariz de uma mulher" width="1200" height="900" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 45% 45%" />
+              </div>
+              <h3 id="rinomodelacao-nome" class="t-h3">Rinomodelação</h3>
+              <p>Procedimento sem cirurgia que busca harmonizar o contorno do nariz, respeitando as proporções do rosto.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Rinomodela%C3%A7%C3%A3o%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Rinomodelação (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+          <li id="preenchimento-labial" class="proc-card">
+            <article aria-labelledby="preenchimento-labial-nome">
+              <div class="photo">
+                <img src="images/fotos/u-1752245818739-890854ca3b81-1080.jpg" srcset="images/fotos/u-1752245818739-890854ca3b81-640.jpg 640w, images/fotos/u-1752245818739-890854ca3b81-1080.jpg 1080w, images/fotos/u-1752245818739-890854ca3b81-1440.jpg 1440w" sizes="(min-width: 1024px) 29vw, (min-width: 768px) 44vw, 82vw" alt="Close-up de lábios carnudos em tom malva, com a mão apoiada no rosto" width="1200" height="1800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 50% 55%" />
+              </div>
+              <h3 id="preenchimento-labial-nome" class="t-h3">Preenchimento Labial</h3>
+              <p>Realça o contorno e o volume dos lábios de forma equilibrada, valorizando o formato natural da boca.</p>
+              <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20saber%20mais%20sobre%20Preenchimento%20Labial%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="link-line">Consultar e agendar<span class="sr-only"> — Preenchimento Labial (abre o WhatsApp)</span></a>
+            </article>
+          </li>
+            </ul>
+
+            <div class="carousel__controls" hidden>
+              <div aria-hidden="true" class="carousel__bar">
+                <div class="carousel__progress"></div>
+              </div>
+              <div class="carousel__arrows">
+                <button type="button" data-step="-1" disabled aria-label="Procedimentos anteriores" aria-controls="procedimentos-lista" class="carousel__arrow">
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 2L4 8l6 6" stroke="currentColor" stroke-width="1" fill="none" /></svg>
+                </button>
+                <button type="button" data-step="1" aria-label="Próximos procedimentos" aria-controls="procedimentos-lista" class="carousel__arrow">
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2l6 6-6 6" stroke="currentColor" stroke-width="1" fill="none" /></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ——— Sobre ——— -->
+      <section id="sobre" aria-labelledby="sobre-titulo" class="about">
+        <div class="container-x about__grid">
+          <figure data-reveal class="about__figure">
+            <div class="photo">
+              <img src="images/fotos/p-35884502-1080.jpg" srcset="images/fotos/p-35884502-640.jpg 640w, images/fotos/p-35884502-1080.jpg 1080w, images/fotos/p-35884502-1440.jpg 1440w" sizes="(min-width: 768px) 40vw, 92vw" alt="Sala de estética com maca branca diante de um armário preto de puxadores dourados, com vela acesa" width="1200" height="1800" loading="lazy" decoding="async" fetchpriority="auto" style="object-position: 50% 55%" />
+            </div>
+            <!-- Com um retrato real da Camila, adicione a legenda:
+                 <figcaption class="t-small about__caption">Camila May Missio</figcaption> -->
+          </figure>
+
+          <div class="about__body">
+            <h2 id="sobre-titulo" data-reveal class="t-h2">Beleza que respeita sua essência.</h2>
+            <p data-reveal class="t-lead about__lead" style="--reveal-delay: 120ms">Cada rosto possui sua própria beleza. Meu trabalho é valorizar seus traços naturais através de procedimentos personalizados, atenção aos detalhes e cuidado em cada etapa do atendimento.</p>
+            <!-- Apresentação pessoal (opcional). Um parágrafo por item, só com texto confirmado:
+                 <p data-reveal class="about__bio">…</p> -->
+            <div data-reveal class="signature" style="--reveal-delay: 220ms">
+              <span aria-hidden="true" class="logo-part logo-part--mark signature__mark"></span>
+              <p class="signature__text">
+                <span class="signature__name">Camila May Missio</span>
+                <span class="t-small signature__role">Biomédica Esteta</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ——— Diferenciais ——— -->
+      <section aria-labelledby="diferenciais-titulo" class="values">
+        <div class="container-x values__grid">
+          <div class="values__head">
+            <h2 id="diferenciais-titulo" data-reveal class="t-h2 values__title">O que guia cada atendimento.</h2>
+          </div>
+
+          <ul class="values__list">
+            <li data-reveal class="value" style="--reveal-delay: 0ms">
+              <!-- Impressão digital: o que é único em cada pessoa. -->
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="value__icon">
+                <path d="M13 31c-.6-3-.7-6 0-9 1.4-6.4 5.8-10.5 11-10.5 6.8 0 11.5 5.6 11.5 13 0 1.5-.1 3-.4 4.5" />
+                <path d="M17.5 36.5c-1.2-3-1.6-6.4-1.1-10 .7-5 3.7-8.5 7.6-8.5 4.4 0 7.5 3.6 7.5 8.6 0 3.2-.6 6.4-1.8 9.4" />
+                <path d="M22 38.5c-1.4-3.4-2-7-1.6-10.6.3-2.7 1.6-4.4 3.6-4.4 2 0 3.3 1.7 3.3 4.4 0 3.6-.8 7-2.4 10.1" />
+                <path d="M24 28c0 3.6-.4 6.6-1.4 9.4" />
+              </svg>
+              <div>
+                <h3 class="t-h3">Atendimento personalizado</h3>
+                <p>Cada procedimento começa por ouvir você e entender o que deseja realçar.</p>
+              </div>
+            </li>
+            <li data-reveal class="value" style="--reveal-delay: 90ms">
+              <!-- Compasso de proporção: medida e precisão. -->
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="value__icon">
+                <circle cx="24" cy="10.5" r="2.5" />
+                <path d="M22.9 12.8 14 38M25.1 12.8 34 38" />
+                <path d="M17 29.5c4.6 1.6 9.4 1.6 14 0" />
+                <path d="M24 6v2" />
+              </svg>
+              <div>
+                <h3 class="t-h3">Atenção aos detalhes</h3>
+                <p>Medidas, proporções e acabamento observados com calma, do início ao fim.</p>
+              </div>
+            </li>
+            <li data-reveal class="value" style="--reveal-delay: 180ms">
+              <!-- Lótus, como na logo: beleza natural. -->
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="value__icon">
+                <path d="M24 13c4.6 4.4 5.6 11.4 0 20-5.6-8.6-4.6-15.6 0-20Z" />
+                <path d="M24 33c-6.3-.4-11.6-4.6-12.8-11.6 5.6.4 9.8 3.7 12.8 11.6Z" />
+                <path d="M24 33c6.3-.4 11.6-4.6 12.8-11.6-5.6.4-9.8 3.7-12.8 11.6Z" />
+                <path d="M13 37.5c7.3-1.6 14.7-1.6 22 0" />
+              </svg>
+              <div>
+                <h3 class="t-h3">Valorização da beleza natural</h3>
+                <p>O objetivo é harmonizar os seus traços, nunca transformá-los em outros.</p>
+              </div>
+            </li>
+            <li data-reveal class="value" style="--reveal-delay: 270ms">
+              <!-- Gota com cruz: higiene e cuidado. -->
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="value__icon">
+                <path d="M24 9.5c-5.8 7.4-9.5 13-9.5 18a9.5 9.5 0 0 0 19 0c0-5-3.7-10.6-9.5-18Z" />
+                <path d="M24 24v8M20 28h8" />
+              </svg>
+              <div>
+                <h3 class="t-h3">Cuidado e responsabilidade</h3>
+                <p>Higiene, avaliação individual e orientações claras em cada procedimento.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ——— Chamada final ——— -->
+      <section id="contato" aria-labelledby="cta-titulo" class="on-dark cta">
+        <!-- Motivo gráfico da marca: o arco de uma sobrancelha em traço fino. -->
+        <svg viewBox="0 0 48 16" fill="none" aria-hidden="true" class="cta__brow">
+          <path d="M2 13.5C8 8 16 3.6 26 2.6c6.4-.6 12 .8 15.6 3.4 2 1.4 3.4 3.4 4.4 5.6" stroke="currentColor" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+        </svg>
+
+        <div class="container-x cta__grid">
+          <div class="cta__head">
+            <span aria-hidden="true" data-reveal class="cta__rule"></span>
+            <h2 id="cta-titulo" data-reveal class="t-h2 cta__title">Sua beleza merece esse cuidado.</h2>
+          </div>
+          <div data-reveal style="--reveal-delay: 150ms" class="cta__body">
+            <p class="t-lead cta__text">Agende seu atendimento e descubra como pequenos detalhes podem valorizar ainda mais sua beleza.</p>
+            <a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer" class="btn btn-gold cta__btn">Agendar pelo WhatsApp
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.69 8.24-8.23 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ——— Rodapé ——— -->
+    <footer class="on-dark site-footer">
+      <div class="container-x">
+        <div class="site-footer__rule"></div>
+
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a href="#inicio" aria-label="Camila May Missio, Biomédica Esteta — voltar ao início" class="site-footer__logo">
+              <span role="img" aria-label="Camila May Missio, Biomédica Esteta" class="logo-stacked">
+                <span aria-hidden="true" class="logo-part logo-part--mark logo-stacked__mark"></span>
+                <span aria-hidden="true" class="logo-part logo-part--word logo-stacked__word"></span>
+                <span aria-hidden="true" class="logo-part logo-part--divider logo-stacked__divider"></span>
+                <span aria-hidden="true" class="logo-part logo-part--sub logo-stacked__sub"></span>
+              </span>
+            </a>
+            <p class="t-small site-footer__about">Micropigmentação, botox, bioestimulador de colágeno, harmonização facial, fios de PDO, microagulhamento, skinbooster, rinomodelação e preenchimento labial.</p>
+          </div>
+
+          <nav aria-label="Rodapé" class="site-footer__col site-footer__col--nav">
+            <h2 class="t-small site-footer__heading">Navegação</h2>
+            <ul class="site-footer__links">
+              <li><a href="#inicio">Início</a></li>
+              <li><a href="#procedimentos">Procedimentos</a></li>
+              <li><a href="#sobre">Sobre</a></li>
+              <li><a href="#contato">Contato</a></li>
+            </ul>
+          </nav>
+
+          <div class="site-footer__col site-footer__col--contact">
+            <h2 class="t-small site-footer__heading">Contato</h2>
+            <ul class="site-footer__links">
+              <li><a href="https://www.instagram.com/camilamaymissio/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://wa.me/554598432801?text=Ol%C3%A1%2C%20Camila!%20Gostaria%20de%20agendar%20um%20atendimento." target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+            </ul>
+          </div>
+
+          <div class="site-footer__col site-footer__col--location">
+            <h2 class="t-small site-footer__heading">Localização</h2>
+            <address class="site-footer__address">
+              <span>Av. Brasil, 1400 — Salão da Leda</span>
+              <span>Medianeira — PR</span>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Avenida%20Brasil%2C%201400%2C%20Medianeira%20-%20PR" target="_blank" rel="noopener noreferrer" class="link-line site-footer__map">Ver no mapa</a>
+            </address>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p>© <span data-year>2026</span> Camila May Missio. Todos os direitos reservados.</p>
+          <!-- Créditos das fotos ilustrativas. Sem fotos de banco de imagem, remova este bloco. -->
+          <details class="credits">
+            <summary>Fotografias ilustrativas (Unsplash e Pexels) <span aria-hidden="true" class="credits__icon">+</span></summary>
+            <p class="credits__text">As imagens deste site são de bancos de imagem e não retratam clientes nem trabalhos realizados no estúdio. Créditos:
+              <a href="https://www.pexels.com/photo/a-woman-s-face-10658350/" target="_blank" rel="noopener noreferrer">Alexander Krivitskiy</a>,
+              <a href="https://unsplash.com/photos/closeup-photo-of-womans-face-AlZX3aSW5Iw" target="_blank" rel="noopener noreferrer">JC Gellidon</a>,
+              <a href="https://unsplash.com/photos/y2T5hT7pWx4" target="_blank" rel="noopener noreferrer">Icons8 Team</a>,
+              <a href="https://unsplash.com/photos/womans-face-yH0dth2yEQE" target="_blank" rel="noopener noreferrer">Oliver Johnson</a>,
+              <a href="https://unsplash.com/photos/a-woman-receiving-a-cosmetic-injection-on-her-chin-35IcCEwNTqc" target="_blank" rel="noopener noreferrer">Sum Sum</a>,
+              <a href="https://unsplash.com/photos/woman-with-freckles-in-golden-light-_Yca73BgigE" target="_blank" rel="noopener noreferrer">Mohamed hamdi</a>,
+              <a href="https://unsplash.com/photos/facial-treatment-with-brush-applying-white-cream-to-face-Xxs9WvkUPLo" target="_blank" rel="noopener noreferrer">kimia kazemi</a>,
+              <a href="https://unsplash.com/photos/portrait-of-woman-face-b2bXKspL5MY" target="_blank" rel="noopener noreferrer">Kamila Maciejewska</a>,
+              <a href="https://unsplash.com/photos/technician-applying-eyebrow-treatment-to-a-woman-x0r5YvOJFCg" target="_blank" rel="noopener noreferrer">Sum Sum</a>,
+              <a href="https://unsplash.com/photos/a-woman-with-freckles-and-her-hand-on-her-lips-S5Gipx7uMCU" target="_blank" rel="noopener noreferrer">bahareh moradian</a>,
+              <a href="https://www.pexels.com/photo/serene-spa-interior-with-massage-table-and-candle-35884502/" target="_blank" rel="noopener noreferrer">Marine Fougère</a>.
+            </p>
+          </details>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
